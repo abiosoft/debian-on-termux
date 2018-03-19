@@ -1,29 +1,28 @@
-debian-on-termux
+ubuntu-on-termux
 ================
 
 what is it
 ----------
+This is a fork of [Debian On Termux](https://github.com/sp4rkie/debian-on-termux) to install Ubuntu on Chromebook.
 
-- a shell script to install [Debian 9 (stretch)](https://www.debian.org/releases/stretch/) via [debootstrap](https://wiki.debian.org/Debootstrap) in a [Termux](https://wiki.termux.com/wiki/Main_Page) environment
-- supported Debian versions include: stable (stretch), testing (buster), unstable
-- supported architectures include: armel, armhf, arm64, i386, amd64
+- a shell script to install [Ubuntu 18.04(bionic)](https://wiki.ubuntu.com/BionicBeaver) via [debootstrap](https://wiki.debian.org/Debootstrap) in a [Termux](https://wiki.termux.com/wiki/Main_Page) environment
 
 how to use it
 -------------
 
 - install [Termux](https://termux.com/)
-- download `debian_on_termux.sh` from [debian-on-termux](https://github.com/sp4rkie/debian-on-termux) into your termux home directory
+- download `ubuntu_on_termux.sh` from [ubuntu-on-termux](https://github.com/sp4rkie/ubuntu-on-termux) into your termux home directory
 
         cd /data/data/com.termux/files/home
         apt update
         apt install wget
         hash -r
-        wget https://raw.githubusercontent.com/sp4rkie/debian-on-termux/master/debian_on_termux.sh
+        wget https://raw.githubusercontent.com/abiosoft/ubuntu-on-termux/master/ubuntu_on_termux.sh
 
 - check the configuration lines near the top of the script for your target architecture, debian version and other preferences
 - execute the script
 
-        sh debian_on_termux.sh
+        sh ubuntu_on_termux.sh
 
 - to watch the installation process type
 
@@ -31,37 +30,28 @@ how to use it
 
 - if all went well (takes about 30min on the hardware below) a script is created to enter the debian guest system
 
-        $HOME/bin/enter_deb
+        $HOME/bin/enter_ubuntu
 
-        Usage: enter_deb [options] [command]
-        enter_deb: enter the installed debian guest system
+        Usage: enter_ubuntu [options] [command]
+        enter_deb: enter the installed ubuntu guest system
 
           -0 - mimic root (default)
           -n - prefer regular termux uid (termux-uid)
 
-- sample usage: debian shell (stay in chrooted debian)
+- sample usage: ubuntu shell (stay in chrooted ubuntu)
         
-        bash-4.4$ enter_deb
+        bash-4.4$ enter_ubuntu
         root@localhost:~#
-
-- sample usage: debian one-shot command (execute in chrooted debian and return to the host environment)
-
-        bash-4.4$ enter_deb -n id\; hostname\; pwd\; cat /etc/debian_\*
-        uid=10228(u0_a228) gid=10228(u0_a228) groups=10228(u0_a228),3003,9997,50228
-        localhost
-        /home/u0_a228
-        9.1
-        bash-4.4$
 
 - for suggestions or in the unlikely event of a problem just raise an issue [here](https://github.com/sp4rkie/debian-on-termux/issues/new):-)
 
 hardware
 --------
 
-- developed and tested on Android version: 6.0.1/ Device manufacturer: LGE/ Device model: LG-K100
+- developed and tested on Asus C302 Chromebook
 
 reference
 ---------
 
-[How to install Debian 9.2 chroot termux? #1645](https://github.com/termux/termux-packages/issues/1645#issuecomment-337564650)
+[Debian On Termux](https://github.com/sp4rkie/debian-on-termux)
 
