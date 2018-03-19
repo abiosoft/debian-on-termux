@@ -260,10 +260,10 @@ chmod 644 $HOME/$ROOTFS_TOP/etc/resolv.conf
 }
 
 #
-# to enter the debian guest system execute '$HOME/bin/enter_deb' on the termux host system
+# to enter the debian guest system execute '$HOME/bin/enter_ubuntu' on the termux host system
 #
 mkdir -p $HOME/bin
-cat << EOF > $HOME/bin/enter_deb
+cat << EOF > $HOME/bin/enter_ubuntu
 #!/data/data/com.termux/files/usr/bin/sh
 
 unset LD_PRELOAD
@@ -272,12 +272,12 @@ ROOTFS_TOP_=$ROOTFS_TOP
 ROOT_=1
 USER_=$USER_NAME
 EOF
-cat << 'EOF' >> $HOME/bin/enter_deb
+cat << 'EOF' >> $HOME/bin/enter_ubuntu
 
-SCRIPTNAME=enter_deb
+SCRIPTNAME=enter_ubuntu
 show_usage () {
         echo "Usage: $SCRIPTNAME [options] [command]"
-        echo "$SCRIPTNAME: enter the installed debian guest system"
+        echo "$SCRIPTNAME: enter the installed ubuntu guest system"
         echo ""
         echo "  -0 - mimic root (default)"
         echo "  -n - prefer regular termux uid ($USER_)"
@@ -314,7 +314,7 @@ eval $PREFIX/bin/proot \
     --link2symlink \
     /usr/bin/env -i HOME=$HOMEDIR_ TERM=$TERM LANG=$LANG $CMD_
 EOF
-chmod 755 $HOME/bin/enter_deb
+chmod 755 $HOME/bin/enter_ubuntu
 
 cat << 'EOF' > $HOME/$ROOTFS_TOP/root/.profile
 # ~/.profile: executed by Bourne-compatible login shells.
@@ -376,7 +376,7 @@ $PREFIX/bin/proot \
 echo 
 echo installation successfully completed
 echo to enter the guest system type:
-echo '$HOME/bin/enter_deb'
+echo '$HOME/bin/enter_ubuntu'
 echo
 
 } # end DO_THIRD_STAGE
