@@ -9,17 +9,17 @@ DO_FIRST_STAGE=: # false   # required (unpack phase/ executes outside guest invi
 DO_SECOND_STAGE=: # false  # required (complete the install/ executes inside guest invironment)
 DO_THIRD_STAGE=: # false   # optional (enable local policies/ executes inside guest invironment)
 
-ARCHITECTURE=armhf         # supported architectures include: armel, armhf, arm64, i386, amd64
-VERSION=stretch            # supported debian versions include: stretch, stable, testing, unstable
-ROOTFS_TOP=deboot_debian   # name of the top install directory
-ZONEINFO=Europe/Berlin     # set your desired time zone
+ARCHITECTURE=i386          # supported architectures include: armel, armhf, arm64, i386, amd64
+VERSION=bionic             # supported debian versions include: stretch, stable, testing, unstable
+ROOTFS_TOP=deboot_ubuntu   # name of the top install directory
+ZONEINFO=Europe/Dublin     # set your desired time zone
 
 filter() {
     egrep -v '^$|^WARNING: apt does'
 }
 
 USER_ID=`id -u`
-USER_NAME=`id -un`
+USER_NAME:=`id -un`
 unset LD_PRELOAD # just in case termux-exec is installed
 #
 # workaround https://github.com/termux/termux-app/issues/306
@@ -307,6 +307,7 @@ CMD_="$SHELL_ -l"
 eval $PREFIX/bin/proot \
     -b /dev \
     -b /proc \
+    -b $HOME/storage/downloads:/downloads \
     -r $HOME/$ROOTFS_TOP_ \
     -w $HOMEDIR_ \
     $CAPS_ \
